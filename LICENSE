@@ -1,1 +1,38 @@
 THIS IS WRITEED FREELY
+
+git 命令记录：
+
+一、git 安装好后，做一个全局设置：告诉 git 你的用户名和邮箱
+	git confit --global user.name "yhwxh"
+	git config --global user.email "yhwangxh@126.com"
+    
+二、在本地创建一个目录，并且将其初始化为 git 仓库
+	mkdir learngit
+	cd learngit
+	git init
+三、在工作区创建一个文件并将其提交到仓库
+	vim readme.txt	# 此文件是在 learngit 目录下创建的
+	git add readme.txt
+	git commit -m "add a readme.txt file"
+四、修改文件然后查看仓库的状态，并查看修改的内容
+	git status
+	git diff readme.txt	# 查看文件做了哪些改动，对比的是 HEAD 上的文件和当前工作区的文件
+五、版本回退：当文件该乱了或者误删的话，需要回退到以前的版本时
+    回退的前提是：不要提交的远程仓库
+	git log		# 查看提交日志
+	git log --pretty=online		# 以简单形式查看提交日志
+	git reflog	# 查看历史命令，这个可帮助我们查看被回退版本的 commit ID
+	git reset --hard HEAD^		# HEAD^ 也可以用 commit ID 来表示，一个 ^ 表示前一个版本，两个表示前两个版本，多个用 ~N 表示，比如 ~100
+六、当你还没有将修改提交到主分支，而且还没有将修改 add 到缓存区时，如何撤销修改
+    该命令撤销的是工作区的修改，而不会影响暂存器的修改，总之就是让文件回到最近一次 commit 的状态或者最近一次 add 的状态
+    命令中的 -- 必须有，如果不加 -- 就是切换分支的意思了
+    1）当你的修改还在工作区，而没有添加到 stage 区时，回到的是你上次提交时的状态
+	git checkout -- readme.txt	
+    2）当你提交到缓存区后，又做了修改，那么回到的是暂存区的状态
+    	git checkout --readme.txt
+七、当你将修改的文件 add 到了暂存区，但还没有提交，怎么把暂存区的修改撤销呢
+	git reset HEAD readme.txt	# 先将修改回退到工作区，他不会直接给你撤销掉的
+	git checkout -- readme.txt	# 再将修改按 六 中操作回退
+八、若是错误的修改已经提交了呢（没推到远程库），怎么撤销
+    	按 五 中做—————版本回退
+九、
