@@ -54,8 +54,12 @@ git 命令记录：
 十、在 github 上创建远程仓库，并将本地仓库关联推送
 	ssh-keygen -t rsa -C "yhwangxh@126.com"		# 创建 ssh 公司密钥，一路默认，不用设置密码
 	将公钥内容拷贝到 github 并新建仓库
-	git remote add origin git@github:yhwxh/learngit.git	# 将本地库与远程库关联，这里是在本地仓库目录下执行的，所以是关联的本地，并且同时给远程库起了个名字，默认叫 origin
+	git remote add origin git@github.com:yhwxh/learngit.git	# 将本地库与远程库关联，这里是在本地仓库目录下执行的，所以是关联的本地，并且同时给远程库起了个名字，默认叫 origin
 	git push -u origin master	# 将本地内容推送到远程库，第一次要加上 -u 这个参数
 	git push origin master		# 以后就可以用这个命令了
+    注：若关联错误，如何解除关联
+    	git remote remove origin
+	git remote add origin git@github.com:yhwxh/learngit.git
+	git push -u origin master
 
 十一、
