@@ -62,4 +62,29 @@ git 命令记录：
 	git remote add origin git@github.com:yhwxh/learngit.git
 	git push -u origin master
 
-十一、
+十一、从远程仓库克隆（拉取）仓库
+      最好的开发方式是：先创建远程库，然后从远程库克隆（如果已有本地仓库，那么可按 十 进行操作）
+	在 GitHub 上新建一个仓库 gitskills
+	git clone git@github.com:yhwxh/gitskills.git	# 克隆远程仓库到本地
+	git clone https://github.com/yhwxh/gitskills.git	# 还可以用 http 协议
+
+十二、分支管理
+      1）在干活的时候，建一个自己的分支，别人在原来的分支上工作，自己在自己的分支上工作，互不影响
+         ，开发完后，一次性合并到原来的分支
+	 git checkout -b dev		# 创建 dev 分支并切换到此分支上，参数 -b 表示创建并切换分支
+	 				  等同于下面两条命令
+	 git branch dev			# 创建分支 dev ，-b 有点像 branch 的缩写，注意：分支是在当前分支的基础上分出来的
+	 git checkout dev		# 切换分支到 dev 上
+
+	 git branch 			# 查看当前所处的分支
+
+十三、合并分支——git merge 命令：将指定分支合并到当前分支
+      当合并只有一个分支有改动时，git 执行的是快速合并（fast_forward），
+      当各个分支都有改动时，git 无法快速合并，只能尝试把各自的改动合并起来（正因为这个合并动作，导致它没那么快速）
+      但这个过程是有可能发生冲突（conflict）的，此时，需手动解决冲突才能合并
+	git checkout master	# 要合并到哪个分支就切换到相应分支上
+	git merge dev		# 将 dev 分支合并到 master 分支上，前提是要先切换到 master 分支
+
+十四、删除分支：若合并完后当前分支没用了，就可以把这个分支删除了
+	git branch -d dev	# 删除 dev 分支
+	git branch		# 再次查看分支
